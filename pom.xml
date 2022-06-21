@@ -23,6 +23,8 @@
     <org.selenium.firefox.driver.version>3.141.59</org.selenium.firefox.driver.version>
     <net.bytebuddy.version>1.12.10</net.bytebuddy.version>
     <org.mockito.version>4.6.0</org.mockito.version>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -56,12 +58,6 @@
       <groupId>org.jetbrains</groupId>
       <artifactId>annotations</artifactId>
       <version>${org.jetbrains.annotations.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>RELEASE</version>
-      <scope>test</scope>
     </dependency>
 
 
