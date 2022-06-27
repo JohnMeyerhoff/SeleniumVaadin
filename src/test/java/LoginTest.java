@@ -1,5 +1,4 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -25,6 +24,10 @@ public class LoginTest {
 
   }
 
+  /**
+   * Nach Aufgabenstellung: Für die User Story US1 (Login) sollte ein automatisierter Akzeptanztest
+   * (...) entwickelt werden. der Logout wird nicht explizit getestet.
+   */
   @Test
   public void test() {
     assertTrue(true);
@@ -33,22 +36,24 @@ public class LoginTest {
     // find username by xpath
     driver.findElement(By.xpath("//*[@id=\"vaadinLoginUsername\"]/input")).sendKeys("AdvTest");
     // find password by xpath AND navigate to BUTTON
-    driver.findElement(By.xpath("//*[@id=\"vaadinLoginPassword\"]/input")).sendKeys("AdvTest", Keys.TAB, Keys.SPACE);
-    WebElement error = driver.findElement(By.xpath("//*[@id=\"overlay\"]/flow-component-renderer/div"));
+    driver.findElement(By.xpath("//*[@id=\"vaadinLoginPassword\"]/input"))
+        .sendKeys("AdvTest", Keys.TAB, Keys.SPACE);
+    WebElement error = driver.findElement(
+        By.xpath("//*[@id=\"overlay\"]/flow-component-renderer/div"));
     assertEquals("User not found.", error.getText(), "Message should be 'User not found.'");
-
 
     driver.get("http://localhost:8080/login");
 
     // find username by xpath
     driver.findElement(By.xpath("//*[@id=\"vaadinLoginUsername\"]/input")).sendKeys("LauraStudent");
     // find password by xpath AND navigate to BUTTON
-    driver.findElement(By.xpath("//*[@id=\"vaadinLoginPassword\"]/input")).sendKeys("LauraStudent", Keys.TAB, Keys.SPACE);
+    driver.findElement(By.xpath("//*[@id=\"vaadinLoginPassword\"]/input"))
+        .sendKeys("LauraStudent", Keys.TAB, Keys.SPACE);
     //assertEquals(driver.getCurrentUrl(), "http://localhost:8080/welcome", "Should be redirected to homepage.");
 
     WebElement abmelden = driver.findElement(By.partialLinkText("Abmelden"));
     assertEquals("Abmelden", abmelden.getText(), "Should be 'Abmelden'");
-
+    // hier kann abmelden auch noch geklicked werden.
 
     new WebDriverWait(driver, 5000).until(
         ExpectedConditions.presenceOfElementLocated(By.id("shouldNotExist")));
