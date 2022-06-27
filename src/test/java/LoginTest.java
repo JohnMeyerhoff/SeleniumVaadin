@@ -51,7 +51,7 @@ public class LoginTest {
 
 
     new WebDriverWait(driver, 5000).until(
-        ExpectedConditions.presenceOfElementLocated(By.id("existiertbestimmtnicht")));
+        ExpectedConditions.presenceOfElementLocated(By.id("shouldNotExist")));
     driver.get("http://localhost:8080/login");
 
 
