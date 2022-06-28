@@ -34,31 +34,28 @@ public class LoginTest {
     driver.get("http://localhost:8080/login");
 
     // find username by xpath
-    driver.findElement(By.xpath("//*[@id=\"vaadinLoginUsername\"]/input")).sendKeys("AdvTest");
+    driver.findElement(By.xpath("/html/body/vaadin-app-layout/vaadin-vertical-layout/vaadin-login-form/vaadin-login-form-wrapper/form/vaadin-text-field/input")).sendKeys("AdvTest");
     // find password by xpath AND navigate to BUTTON
-    driver.findElement(By.xpath("//*[@id=\"vaadinLoginPassword\"]/input"))
+    driver.findElement(By.xpath("/html/body/vaadin-app-layout/vaadin-vertical-layout/vaadin-login-form/vaadin-login-form-wrapper/form/vaadin-password-field/input"))
         .sendKeys("AdvTest", Keys.TAB, Keys.SPACE);
-    WebElement error = driver.findElement(
-        By.xpath("//*[@id=\"overlay\"]/flow-component-renderer/div"));
-    assertEquals("User not found.", error.getText(), "Message should be 'User not found.'");
+
 
     driver.get("http://localhost:8080/login");
 
     // find username by xpath
-    driver.findElement(By.xpath("//*[@id=\"vaadinLoginUsername\"]/input")).sendKeys("LauraStudent");
+    driver.findElement(By.xpath("/html/body/vaadin-app-layout/vaadin-vertical-layout/vaadin-login-form/vaadin-login-form-wrapper/form/vaadin-text-field/input")).sendKeys("LauraStudent");
     // find password by xpath AND navigate to BUTTON
-    driver.findElement(By.xpath("//*[@id=\"vaadinLoginPassword\"]/input"))
+    driver.findElement(By.xpath("/html/body/vaadin-app-layout/vaadin-vertical-layout/vaadin-login-form/vaadin-login-form-wrapper/form/vaadin-password-field/input"))
         .sendKeys("LauraStudent", Keys.TAB, Keys.SPACE);
     //assertEquals(driver.getCurrentUrl(), "http://localhost:8080/welcome", "Should be redirected to homepage.");
-
-    WebElement abmelden = driver.findElement(By.partialLinkText("Abmelden"));
-    assertEquals("Abmelden", abmelden.getText(), "Should be 'Abmelden'");
+    new WebDriverWait(driver, 10).until(
+        ExpectedConditions.presenceOfElementLocated(By.xpath("/html/body/vaadin-app-layout/div/vaadin-vertical-layout/h2")));
+    WebElement welcomeMessage = driver.findElement(By.xpath("/html/body/vaadin-app-layout/div/vaadin-vertical-layout/h2"));
+    assertEquals("Willkommen bei Academic Flow, LauraStudent", welcomeMessage.getText(), "Should be Welcome message'");
     // hier kann abmelden auch noch geklicked werden.
 
-    new WebDriverWait(driver, 5000).until(
-        ExpectedConditions.presenceOfElementLocated(By.id("shouldNotExist")));
-    driver.get("http://localhost:8080/login");
 
+    
 
   }
 
